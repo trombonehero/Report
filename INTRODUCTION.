@@ -34,3 +34,7 @@ Control List (ACL), the other is Capability List (CL). [2,27]
 In Access Control List (ACL), there is a column of matrix in each resource which contains pairs of process and authority.
 The Capability List (CL), contains elements known as capabilities which are references to resources and the authorities
 to use these resources. 
+
+Bibliography and References
+
+1.	Paul Ionescu. The 10 Most Common Application Attacks in Action [online]. April 8, 2015. URL: https://securityintelligence.com/the-10-most-common-application-attacks-in-action/. Accessed August 16,2017.

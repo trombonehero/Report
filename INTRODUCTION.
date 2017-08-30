@@ -1,0 +1,36 @@
+Introduction
+
+On daily basis, more networks and gadgets are connected to the internet, The web has become 
+indispensable as it hosts productivity software suites for creating documents, spreadsheets
+and email. Applications suites for calculator, live television streaming, and weather which 
+are daily needs are also hosted on the web. [1]
+
+Web applications provide online banking services, services for storing pictures and documents
+in the cloud, services that connects home devices such IP camera to mobile phone for remote 
+monitoring and ecommerce services. Sensitive data like password, credit card details are usually 
+required to access these web services.
+
+These web applications that provide web services listed in the two paragraphs above, unfortunately
+could have some vulnerabilities which attackers can exploit. Despite network defenses like firewall
+and intrusion prevention systems. [1]
+
+In IT/TCP network protocol the application layer is the most accessed, exposed and difficult to defend.
+In addition, vulnerabilities experienced in the application layer are because of complicated user input 
+activities that is difficult to categorized with intrusion detection signature. [1]
+
+In the recent past, attackers have used methods such as Unvalidated Redirects and Forwards, Cross-Site Request, 
+Heartbeat and Shellshock, Security Misconfiguration and Sensitive Data Exposure vulnerabilities to manipulate their
+victims’ applications and accessed victims’ personal information. [1]
+
+Capability-based security is a type of a system security in which processes running in a system have some authority 
+or set of authorities by default or explicit user’s action to protect users’ data. Since applications may have 
+vulnerabilities and application users can be tricked to run malicious programs by attackers. [2,26]
+
+To reduce the harmful effects of malicious applications, the authority applications have over resources
+must be limited to the minimum authority required for their computation. There are two ways to store and
+manage the authority processes’(applications’) have over resources (data) by computer system. One is Access
+Control List (ACL), the other is Capability List (CL). [2,27]
+
+In Access Control List (ACL), there is a column of matrix in each resource which contains pairs of process and authority.
+The Capability List (CL), contains elements known as capabilities which are references to resources and the authorities
+to use these resources. 

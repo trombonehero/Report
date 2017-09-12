@@ -1,0 +1,96 @@
+\documentclass{article}
+
+ 
+\title{Strengthening Capsicum Capabilities with Libpreopen}
+\author{Stanley Uche Godfrey}
+\date{\today}
+ 
+\begin{document}
+ 
+\maketitle
+ 
+\section{Introduction}
+ 
+On daily basis, more networks and gadgets are connected to the internet, The web has become 
+indispensable as it hosts productivity software suites for creating documents, spreadsheets
+and email. Applications suites for calculator, live television streaming, and weather which 
+are daily needs are also hosted on the web. [1]\paragraph*{•}
+
+
+
+Web applications provide online banking services, services for storing pictures and documents
+in the cloud, services that connects home devices such IP camera to mobile phone for remote 
+monitoring and ecommerce services. Sensitive data like password, credit card details are usually 
+required to access these web services.\paragraph*{•}
+
+
+
+These web applications that provide web services listed in the two paragraphs above, unfortunately
+could have some vulnerabilities which attackers can exploit. Despite network defenses like firewall
+and intrusion prevention systems. [1]\paragraph*{•}
+
+
+
+In IT/TCP network protocol the application layer is the most accessed, exposed and difficult to defend.
+In addition, vulnerabilities experienced in the application layer are because of complicated user input 
+activities that is difficult to categorized with intrusion detection signature. [1]\paragraph*{•}
+
+
+
+In the recent past, attackers have used methods such as Unvalidated Redirects and Forwards, Cross-Site Request, 
+Heartbeat and Shellshock, Security Misconfiguration and Sensitive Data Exposure vulnerabilities to manipulate their
+victims’ applications and accessed victims’ personal information. [1]\paragraph*{•}
+
+
+
+Capability-based security is a type of a system security in which processes running in a system have some authority 
+or set of authorities by default or explicit user’s action to protect users’ data. Since applications may have 
+vulnerabilities and application users can be tricked to run malicious programs by attackers. [2,26] \paragraph*{•}
+
+
+To reduce the harmful effects of malicious applications, the authority applications have over resources
+must be limited to the minimum authority required for their computation. There are two ways to store and
+manage the authority processes’(applications’) have over resources (data) by computer system. One is Access
+Control List (ACL), the other is Capability List (CL). [2,27]\paragraph*{•}
+In Access Control List (ACL), there is a column of matrix in each resource which contains pairs of process and authority.
+The Capability List (CL), contains elements known as capabilities which are references to resources and the authorities
+to use these resources.\paragraph*{•}
+
+\section{Background}
+
+In UNIX security system, users’ processes (applications) are identify by an integer known as user id or UID. There is also group id (GID) which is an integer that identifies groups a UNIX system user belong to. A user may belong to more than one group at the same time, and each resource in the system belongs to a user and a group. 
+In UNIX systems, there are three types of authorities a user process can be associated with, the authorities are to right to write to a file, read to a file or execute a file. The UID and GID are used to identify the owner of file and the group in which the owner belongs to.
+For a user process to have access to a resource (data), the user process makes a system call and rights of the users on the resource are determined using the ACL, a file descriptor is returned if the user process has the authority required to access the resource.\paragraph*{•}
+A file descriptor is a non-negative integer value which UNIX operating system (kernel) use to index an opened file, pipe or socket. The file descriptor references a resource and all authorities to use the resource by a system user. The UNIX security system model do not have the fine grain granularity to allow non-root users perform privileged tasks, therefore non-root users can only perform privilege operations by executes the super or root user\textsc{\char13}s program which has its set\textunderscore uid flag set. The downside is a super or root user\textsc{\char13}s program do not just have the privilege to perform a specific task, but has authority to perform any task in the system.
+\paragraph*{•}
+There have been efforts made to fix the lack of granularity in the UNIX security system.  One of such effort is in the implementation of POSIX capabilities. POSIT capabilities divide the authorities of a root user into smaller parts.  Objects (users\textsc{\char13}  processes and files) have three sets of POSIX capabilities to make them adjustable. These three sets of POSIX capabilities are the effective, the permitted and the inherited.  [2,28]
+\paragraph*{•}
+
+
+The effective set checks if the authority to perform certain operation is possessed, the permitted set details POSIX capabilities a user object should possessed while inherit set determines the POSIX capabilities a child process inherit from its parent process. The POSIX capabilities are not.......\paragraph*{•}
+
+
+\section{Conclusion}
+Libpreopen is a library, that can perform openat, faccessat and fstatat operations files on
+FreeBSD when the need to make open, access and stat system calls arises in capsicum capability mode. 
+Libpreopen uses the relative directory descriptor (dirfd) of the file and the path of the file to 
+perform these system call operations.\paragraph*{•}
+
+Libpreopen creates a shared memory and packs the shared memory with file descriptors and file path name
+obtained by performing these (openat, faccessat and fstatat) operations. Operations that can be made on 
+the file descriptors by processes are  limited. When another process (a shell program) notifies the kernel
+to perform system calls such as open, access or stat, Libpreopen will send the fd of the shared memory to 
+the shell program. The shell program will unpack the file descriptor array in the shared memory, loop through
+the array of file descriptors to see if there is a match. If there is a match, capsh  will perform the required
+action using the matched file descriptor in the shared memory if that action is allowed. If there is no match,
+Libpreopen performs openat, faccessat or fstatat operation on the new path and add the fd and path to the appropriate 
+array in the shared memory.
+
+\section{Bibliography and References}
+ 1.	Paul Ionescu. The 10 Most Common Application Attacks in Action [online]. April 8, 2015. URL: https://securityintelligence.com/the-10-most-common-application-attacks-in-action/. Accessed August 16,2017 \\
+ 2.	Mykola Protsenko. Practical Capabilities of UNIX. Conference Seminar on IT Security, 2011, 26-31.\\
+3.	Robert N. M. Watson, Jonathan Anderson, Ben Laurie, Kris Kennaway.Capsicum: practical capabilities for UNIX. Proceedings of the 19th USENIX Security Symposium, 2010.\\
+
+ 
+ 
+\end{document}

@@ -1,0 +1,14 @@
+Libpreopen is a library, that can perform openat, faccessat and fstatat operations files on
+FreeBSD when the need to make open, access and stat system calls arises in capsicum capability mode. 
+Libpreopen uses the relative directory descriptor (dirfd) of the file and the path of the file to 
+perform these system call operations.
+
+Libpreopen creates a shared memory and packs the shared memory with file descriptors and file path name
+obtained by performing these (openat, faccessat and fstatat) operations. Operations that can be made on 
+the file descriptors by processes are  limited. When another process (a shell program) notifies the kernel
+to perform system calls such as open, access or stat, Libpreopen will send the fd of the shared memory to 
+the shell program. The shell program will unpack the file descriptor array in the shared memory, loop through
+the array of file descriptors to see if there is a match. If there is a match, capsh  will perform the required
+action using the matched file descriptor in the shared memory if that action is allowed. If there is no match,
+Libpreopen performs openat, faccessat or fstatat operation on the new path and add the fd and path to the appropriate 
+array in the shared memory.

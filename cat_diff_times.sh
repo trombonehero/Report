@@ -5,15 +5,15 @@ set STARTTIME=`date +%s`
  while($j < 10)
 	#echo $j
 	
-	#../build/src/capsh cat ./tenMeg.txt>output.txt
-	#../build/src/capsh  cat ./fiftyMeg.txt>output.txt
-	#../build/src/capsh cat ./tenMeg.txt>output.txt
-	#../build/src/capsh  cat ./hMeg.txt>output.txt
-	#../build/src/capsh cat ./twoHMeg.txt>output.txt
-	#../build/src/capsh cat ./twoHMegPlus.txt>output.txt
-	#../build/src/capsh cat ./fiveHMeg.txt>output.txt
-	#../build/src/capsh cat ./SevenMeg.txt>output.txt
-	../build/src/capsh cat ./oneGig.txt>output.txt
+	#capsh cat ./tenMeg.txt>output.txt
+	#capsh cat ./fiftyMeg.txt>output.txt
+	#capsh cat ./tenMeg.txt>output.txt
+	#capsh cat ./hMeg.txt>output.txt
+	#capsh cat ./twoHMeg.txt>output.txt
+	#capsh cat ./twoHMegPlus.txt>output.txt
+	#capsh cat ./fiveHMeg.txt>output.txt
+	#capsh cat ./SevenMeg.txt>output.txt
+	capsh cat ./oneGig.txt>output.txt
 	@ j++
 end
 set ENDTIME=`date +%s`

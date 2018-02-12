@@ -1,0 +1,18 @@
+#!/bin/sh
+
+set -ex
+
+rm -rf results
+mkdir results
+echo '*' > results/.gitignore
+
+cd results
+
+sh -ex ../file_generator.sh
+sh -ex ../pipe_data.sh
+sh -ex ../cat_diff_file_sizes.sh
+csh -ex ../cat_diff_times.sh
+sh -ex ../grep_diff_file_sizes.sh
+csh -ex ../grep_diff_times.sh
+sh -ex ../wc_diff_file_sizes.sh
+csh -ex ../wc_diff_times.sh

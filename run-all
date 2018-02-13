@@ -13,6 +13,7 @@ echo "Generating data:"
 echo "--------------------------------------------------------------"
 sh -ex ../file_generator.sh
 sh -ex ../pipe_data.sh
+shasum -a 512 *.dat *.txt
 
 echo "--------------------------------------------------------------"
 echo "Testing cat(1):"

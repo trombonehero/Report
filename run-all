@@ -8,11 +8,33 @@ echo '*' > results/.gitignore
 
 cd results
 
+echo "--------------------------------------------------------------"
+echo "Generating data:"
+echo "--------------------------------------------------------------"
 sh -ex ../file_generator.sh
 sh -ex ../pipe_data.sh
+
+echo "--------------------------------------------------------------"
+echo "Testing cat(1):"
+echo "--------------------------------------------------------------"
+sh -ex ../cat_without_capsh.sh
 sh -ex ../cat_diff_file_sizes.sh
 csh -ex ../cat_diff_times.sh
+
+echo "--------------------------------------------------------------"
+echo "Testing grep(1):"
+echo "--------------------------------------------------------------"
+sh -ex ../grep_without_capsh.sh
 sh -ex ../grep_diff_file_sizes.sh
 csh -ex ../grep_diff_times.sh
+
+echo "--------------------------------------------------------------"
+echo "Testing wc(1):"
+echo "--------------------------------------------------------------"
+sh -ex ../wc_without_capsh.sh
 sh -ex ../wc_diff_file_sizes.sh
 csh -ex ../wc_diff_times.sh
+
+echo "--------------------------------------------------------------"
+echo "All done."
+echo "--------------------------------------------------------------"
